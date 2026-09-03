@@ -30,8 +30,8 @@ const NavbarSection = () => {
     </>
   );
   return (
-    <nav className="w-11/12 mx-auto pt-4 sticky ">
-      <div className="flex justify-between items-center bg-white rounded-2xl p-4 border-2 shadow-inner shadow-sky-100">
+    <nav className="w-11/12 mx-auto pt-4 ">
+      <div className="flex justify-between items-center bg-white rounded-2xl p-4 border-2 shadow-inner shadow-sky-100 ">
         <div className="flex items-center gap-2">
           <Image
             src="/logo.svg"
