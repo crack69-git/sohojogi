@@ -18,6 +18,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
+      scroll="smooth"
       lang="en"
       suppressHydrationWarning
       className={`${notoSansBengali.className} h-full antialiased`}

@@ -19,7 +19,7 @@ const NavbarSection = () => {
         <PiBrowsersBold />
         আমার নোট
       </NavLink>
-      <NavLink href="/bn">
+      <NavLink href="#contact">
         <BiSolidPhoneCall />
         যোগাযোগ
       </NavLink>

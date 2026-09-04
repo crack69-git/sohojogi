@@ -12,7 +12,7 @@ export default function Home() {
       <AboutUsSEction />
       <FeaturesSection />
       <TestimonialSection />
-      <ContactCard />
+      <ContactCard id="#contact" />
     </div>
   );
 }

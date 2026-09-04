@@ -26,7 +26,10 @@ const ContactCard = () => {
     console.log(data);
   };
   return (
-    <div className="w-9/12 mx-auto bg-sky-950 text-white p-10 rounded-lg shadow-lg mt-20 grid grid-cols-2 gap-10">
+    <div
+      id="#contact"
+      className="w-9/12 mx-auto bg-sky-950 text-white p-10 rounded-lg shadow-lg mt-20 grid grid-cols-2 gap-10"
+    >
       <div className="flex flex-col justify-center">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
           <MdAttachEmail className="text-yellow-300" />
