@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -8,17 +9,40 @@ import {
   Label,
   Radio,
   RadioGroup,
+  Spinner,
   TextField,
 } from "@heroui/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const SignUpForm = () => {
-  const onSubmit = (e) => {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    const Data = Object.fromEntries(formData.entries());
+    console.log(Data);
+    const { data, error } = await authClient.signUp.email({
+      name: Data.name,
+      email: Data.email,
+      password: Data.password,
+      image: Data.profileImage,
+      role: Data.role,
+      callbackURL: "/login",
+    });
+    if (data) {
+      alert("Sign up successful!");
+      setLoading(false);
+      router.push("/login");
+    }
+    if (error) {
+      alert("Sign up failed: " + error.message);
+      setLoading(false);
+      return;
+    }
   };
   return (
     <div>
@@ -92,7 +116,12 @@ const SignUpForm = () => {
         </div>
 
         <div className="flex gap-2">
-          <Button type="submit" className="w-full mb-6 bg-sky-900">
+          <Button
+            type="submit"
+            className="w-full mb-6 bg-sky-900 flex items-center justify-center gap-2"
+            isDisabled={loading}
+          >
+            {loading && <Spinner size="sm" color="white" />}
             রেজিস্টার
           </Button>
         </div>

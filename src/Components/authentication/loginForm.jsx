@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {
   Button,
   Description,
@@ -11,15 +12,35 @@ import {
 } from "@heroui/react";
 import { Divider } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginForm = () => {
-  const onSubmit = (e) => {
+  const router = useRouter();
+  const [loading, setLoading] = React.useState(false);
+  const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.target);
-    const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    const Data = Object.fromEntries(formData.entries());
+    console.log(Data);
+    const { data, error } = await authClient.signIn.email({
+      email: Data.email,
+      password: Data.password,
+      rememberMe: true,
+      callbackURL: "/",
+    });
+    if (data) {
+      setLoading(false);
+      alert("Login successful!");
+      router.push("/");
+    }
+    if (error) {
+      setLoading(false);
+      alert("Login failed: " + error.message);
+      return;
+    }
   };
   return (
     <div>
@@ -44,25 +65,11 @@ const LoginForm = () => {
           minLength={8}
           name="password"
           type="password"
-          validate={(value) => {
-            if (value.length < 8) {
-              return "Password must be at least 8 characters";
-            }
-            if (!/[A-Z]/.test(value)) {
-              return "Password must contain at least one uppercase letter";
-            }
-            if (!/[0-9]/.test(value)) {
-              return "Password must contain at least one number";
-            }
-            return null;
-          }}
+          defaultValue="12345678"
         >
           <Label>পাসওয়ার্ড</Label>
           <Input placeholder="আপনার পাসওয়ার্ড লিখুন..." />
-          <Description>
-            পাসওয়ার্ড কমপক্ষে ৮ অক্ষরের হতে হবে, একটি বড় হাতের অক্ষর এবং একটি
-            সংখ্যা থাকতে হবে।
-          </Description>
+
           <FieldError />
         </TextField>
         <div className="flex gap-2">
