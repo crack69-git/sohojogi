@@ -87,11 +87,14 @@ const HeroSection = () => {
             </div>
           </div>
           <div className="flex gap-4 mt-5">
-            <Button className="text-lg">
+            <Button className="text-lg bg-sky-950 rounded-lg">
               <GrLogin />
               নিবন্ধন করুন
             </Button>
-            <Button className="text-lg" variant="secondary">
+            <Button
+              className="text-lg text-sky-900 rounded-lg border border-sky-900"
+              variant="secondary"
+            >
               <FaMagnifyingGlass />
               আরও দেখুন
             </Button>
