@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
       suppressHydrationWarning
       className={`${notoSansBengali.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-sky-50 font-bengali">
+      <body className="min-h-full flex flex-col bg-slate-50 font-bengali">
         <NavbarSection />
         <main className="flex-grow">{children}</main>
         <FooterSection />

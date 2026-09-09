@@ -14,8 +14,8 @@ const NavLink = ({ href, children }) => {
         href={href}
         className={
           isActive
-            ? "text-lg bg-sky-800 px-4 py-2 rounded-lg text-white flex items-center gap-2 hover:bg-sky-700 transition-colors duration-300"
-            : "text-black flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-sky-100 transition-colors duration-300"
+            ? "text-[16px] bg-sky-800 px-2 py-2 rounded-lg text-white flex items-center gap-2 hover:bg-sky-700 transition-colors duration-300"
+            : "text-black flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-sky-100 transition-colors duration-300 text-[16px]"
         }
       >
         {children}
